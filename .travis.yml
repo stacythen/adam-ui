@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - '10'
+before_install:
+  - npm install -g npm@6.9
+install:
+  - npm ci
+  - npm run build
+  - npm run bootstrap
+script:
+  - npm run test:ci
+  - npm run lint
