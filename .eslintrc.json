@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended", // uses react-specific linting rules
+    "plugin:@typescript-eslint/recommended", // uses typescript-specific linting rules
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended", // enables eslint-plugin-prettier and eslint-config-prettier
+    "prettier",
+    "eslint-config-prettier" // Turns off all rules that are unnecessary or might conflict with Prettier
+  ],
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "jest": true
+  },
+  "rules": {
+    "prettier/prettier": ["error", { "singleQuote": true }],
+    "@typescript-eslint/interface-name-prefix": 0,
+    "@typescript-eslint/explicit-function-return-type": 1
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "parser": "@typescript-eslint/parser"
+}

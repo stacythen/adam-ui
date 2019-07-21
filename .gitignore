@@ -1,0 +1,10 @@
+# dependencies
+node_modules
+
+# testing
+coverage
+junit.xml
+
+lerna-debug.log
+npm-debug.log
+packages/*/lib

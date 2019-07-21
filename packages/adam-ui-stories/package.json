@@ -1,0 +1,13 @@
+{
+  "name": "adam-ui-stories",
+  "private": true,
+  "version": "0.0.1",
+  "author": "your name",
+  "dependencies": {
+    "adam-component-sample": "0.0.1"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  }
+}
