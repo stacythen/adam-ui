@@ -13,7 +13,7 @@
     "lib"
   ],
   "scripts": {
-    "tsc": "tsc",
+    "tsc": "tsc -w",
     "build:css": "node-sass src/ -o src/ ",
     "watch:css": "npm run build:css && node-sass src/ -o src/ -w -r",
     "build": "npm run build:css"

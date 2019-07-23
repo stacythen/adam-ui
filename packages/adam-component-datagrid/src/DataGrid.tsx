@@ -1,18 +1,14 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 // import './DataGrid.scss';
 
-import useDataGrid from './useDataGrid';
 import { GridApi, GridReadyEvent, ColumnApi, PaginationChangedEvent } from 'ag-grid-community';
-
-// // interface ISample {
-// //   /** properties description here */
-// //   children?: React.ReactNode;
-// // }
+import useDataGrid from './useDataGrid';
+import Pagination, { IPaginationProps } from './Pagination';
 
 interface ITest {
   make: string;
@@ -29,12 +25,18 @@ const DataGrid = (props: Partial<AgGridReactProps>): React.ReactElement => {
   let gridApi: GridApi;
   let gridColumnApi: ColumnApi;
 
-  // // const onGridReady = useCallback(() => {
-  // //   alert('onGridReady');
-  // // }, [gridApi]);
+  const [customPagination, setCustomPagination] = useState<IPaginationProps>({
+    pageSize: props.paginationPageSize,
+    totalPages: props.rowData ? Math.ceil(props.rowData.length / props.paginationPageSize) : 0,
+    currentPage: props.paginationStartPage,
+    rowCount: props.rowData ? props.rowData.length : 0,
+  });
+
+  // const onGridReady = useCallback(() => {
+  //   alert('onGridReady');
+  // }, [gridApi]);
 
   const _onGridReady = (params: GridReadyEvent) => {
-    alert('onGridReady');
     gridApi = params.api;
     gridColumnApi = params.columnApi;
 
@@ -67,15 +69,14 @@ const DataGrid = (props: Partial<AgGridReactProps>): React.ReactElement => {
 
   const onPaginationChangedCallback = React.useCallback(
     event => {
-      alert('_onPaginationChanged');
-      alert(event.api);
       gridApi = event.api;
       if (gridApi) {
-        alert(`lbLastPageFound = ${gridApi.paginationIsLastPageFound()}`);
-        alert(`lbPageSize = ${gridApi.paginationGetPageSize()}`);
-        alert(`lbCurrentPage = ${gridApi.paginationGetCurrentPage() + 1}`);
-        alert(`lbTotalPages = ${gridApi.paginationGetTotalPages()}`);
-        alert(`setLastButtonDisabled = ${gridApi.paginationIsLastPageFound()}`);
+        setCustomPagination({
+          pageSize: gridApi.paginationGetPageSize(),
+          currentPage: gridApi.paginationGetCurrentPage() + 1,
+          totalPages: gridApi.paginationGetTotalPages(),
+          rowCount: gridApi.paginationGetRowCount(),
+        });
       }
       if (onPaginationChanged) {
         onPaginationChanged(event);
@@ -86,19 +87,19 @@ const DataGrid = (props: Partial<AgGridReactProps>): React.ReactElement => {
 
   const _onPaginationChanged = (event: PaginationChangedEvent) => onPaginationChangedCallback(event);
 
-  const onBtFirst = useCallback(() => {
+  const onFirstClicked = useCallback(() => {
     gridApi.paginationGoToFirstPage();
   }, [gridApi]);
 
-  const onBtLast = useCallback(() => {
+  const onLastClicked = useCallback(() => {
     gridApi.paginationGoToLastPage();
   }, [gridApi]);
 
-  const onBtNext = useCallback(() => {
+  const onNextClicked = useCallback(() => {
     gridApi.paginationGoToNextPage();
   }, [gridApi]);
 
-  const onBtPrevious = useCallback(() => {
+  const onPreviousClicked = useCallback(() => {
     gridApi.paginationGoToPreviousPage();
   }, [gridApi]);
 
@@ -114,39 +115,19 @@ const DataGrid = (props: Partial<AgGridReactProps>): React.ReactElement => {
         {...rest}
         rowData={data}
         pagination={pagination}
+        suppressPaginationPanel={pagination}
         onGridReady={_onGridReady}
         onPaginationChanged={_onPaginationChanged}
       ></AgGridReact>
-      {/* << < 1 2 3 > >>
-        dropdown items per page
-        1 - 10 of 39 items */}
-      <div>
-        <button onClick={onBtFirst}>{'<<'}</button>
-        <button onClick={onBtPrevious}>{'<'}</button>
-        123
-        <button onClick={onBtNext}>{'>'}</button>
-        <button onClick={onBtLast} id="btLast">
-          {'>>'}
-        </button>
-      </div>
-      <div style={{ marginTop: '6px' }}>
-        <span className="label">Last Page Found:</span>
-        <span className="value" id="lbLastPageFound">
-          -
-        </span>
-        <span className="label">Page Size:</span>
-        <span className="value" id="lbPageSize">
-          -
-        </span>
-        <span className="label">Total Pages:</span>
-        <span className="value" id="lbTotalPages">
-          -
-        </span>
-        <span className="label">Current Page:</span>
-        <span className="value" id="lbCurrentPage">
-          -
-        </span>
-      </div>
+      {pagination && (
+        <Pagination
+          {...customPagination}
+          onFirstClicked={onFirstClicked}
+          onPreviousClicked={onPreviousClicked}
+          onNextClicked={onNextClicked}
+          onLastClicked={onLastClicked}
+        />
+      )}
     </div>
   );
 };

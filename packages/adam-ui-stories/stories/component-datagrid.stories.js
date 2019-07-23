@@ -29,4 +29,4 @@ var columnDefs = [
 ];
 storiesOf("DataGrid", module)
   .add("default", () => <DataGrid columnDefs={columnDefs} />)
-  .add("with Pagination", () => <DataGrid columnDefs={columnDefs} pagination={true}  />);
+  .add("with Pagination", () => <DataGrid columnDefs={columnDefs} pagination={true} paginationPageSize={10} />);
