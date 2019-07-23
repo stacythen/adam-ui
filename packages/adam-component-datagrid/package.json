@@ -1,0 +1,33 @@
+{
+  "name": "adam-component-datagrid",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "author": "your name",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "tsc": "tsc",
+    "build:css": "node-sass src/ -o src/ ",
+    "watch:css": "npm run build:css && node-sass src/ -o src/ -w -r",
+    "build": "npm run build:css"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "dependencies": {
+    "ag-grid-community": "^21.1.0",
+    "ag-grid-react": "^21.1.0"
+  },
+  "devDependencies": {
+    "@types/node-sass": "^4.11.0",
+    "node-sass": "^4.12.0"
+  }
+}

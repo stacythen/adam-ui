@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "author": "your name",
   "dependencies": {
-    "adam-component-sample": "0.0.1"
+    "adam-component-sample": "0.0.1",
+    "adam-component-datagrid": "0.0.1"
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
