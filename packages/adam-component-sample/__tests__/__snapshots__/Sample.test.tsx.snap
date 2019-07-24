@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Sample should render properly 1`] = `
-<span>
-  Link to Google
-</span>
-`;

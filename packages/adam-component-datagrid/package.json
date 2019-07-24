@@ -14,13 +14,18 @@
   ],
   "scripts": {
     "tsc": "tsc -w",
-    "build:css": "node-sass src/ -o src/ ",
+    "prepublishOnly": "tsc -b",
+    "build:css": "node-sass src/ -o './' ",
     "watch:css": "npm run build:css && node-sass src/ -o src/ -w -r",
     "build": "npm run build:css"
   },
   "peerDependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "css-loader": "^0.28.7",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-import": "^11.0.0",
+    "postcss-loader": "^2.0.6"
   },
   "dependencies": {
     "ag-grid-community": "^21.1.0",

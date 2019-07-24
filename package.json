@@ -7,7 +7,7 @@
     "clean": "lerna exec -- rimraf lib",
     "prebuild": "npm run clean",
     "build": "lerna run tsc && lerna exec --ignore adam-ui-stories -- babel src -d lib --ignore *.test.ts --ignore *.test.tsx",
-    "build:watch": "lerna run tsc & lerna exec --parallel --ignore adam-ui-stories -- babel src -d lib -w",
+    "build:watch": "lerna run build && lerna run tsc && lerna exec --parallel --ignore adam-ui-stories -- babel src -d lib -w",
     "dev": "npm run build:watch & lerna run storybook --stream --scope adam-ui-stories",
     "publish": "npm run build && lerna publish",
     "lerna": "lerna",

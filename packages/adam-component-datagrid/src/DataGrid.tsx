@@ -4,7 +4,7 @@ import React, { useCallback, useState } from 'react';
 import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-// import './DataGrid.scss';
+import '../ag-theme-adam.css';
 
 import { GridApi, GridReadyEvent, ColumnApi, PaginationChangedEvent } from 'ag-grid-community';
 import useDataGrid from './useDataGrid';
