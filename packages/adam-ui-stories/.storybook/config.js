@@ -1,7 +1,8 @@
-import { configure } from "@storybook/react";
+import { configure } from '@storybook/react';
 
 function loadStories() {
-  require("../stories/component-sample.stories");
+  require('../stories/component-datagrid.stories');
+  require('../stories/component-pagination.stories');
 }
 
 configure(loadStories, module);

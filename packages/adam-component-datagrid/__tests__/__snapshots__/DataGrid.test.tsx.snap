@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataGrid should render properly 1`] = `
+<DataGridThemeProvider>
+  <div
+    className="adam-ui-gridwrapper"
+  >
+    <div
+      className="ag-custom-panel"
+    />
+    <AgGridReact
+      defaultColDef={
+        Object {
+          "resizable": true,
+          "sortable": true,
+        }
+      }
+      domLayout="autoHeight"
+      onFilterChanged={[Function]}
+      onFirstDataRendered={[Function]}
+      onGridReady={[Function]}
+      onGridSizeChanged={[Function]}
+      onPaginationChanged={[Function]}
+      onSortChanged={[Function]}
+      paginationPageSize={10}
+      reactNext={true}
+      suppressCellSelection={true}
+      suppressMovableColumns={true}
+    />
+  </div>
+</DataGridThemeProvider>
+`;

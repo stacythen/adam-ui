@@ -1,0 +1,51 @@
+// Colors
+$odd-row-background-color: #f3f3f3;
+$border-color: #999999 !default;
+$background-color: #fff !default;
+$foreground-color: #777777 !default;
+$header-background-color: $odd-row-background-color !default;
+$header-foreground-color: $foreground-color !default;
+// $icon-color: lightgray !default;
+// $alt-icon-color: $background-color !default;
+// $accent-color: transparent !default;
+// $range-selection-background-color: $icon-color !default;
+
+// Sizing
+$grid-size: 6px !default;
+// $icon-size: 12px !default;
+// $header-height: $grid-size * 6 + 1 !default;
+// $row-height: ($grid-size * 6 + 1) !default;
+// $cell-horizontal-padding: $grid-size * 3 !default;
+// $virtual-item-height: $grid-size * 5 !default;
+// $header-icon-size: 14px !default;
+
+// Misc
+$row-border-width: 0px !default;
+$cell-horizontal-border: 1px solid #999999aa !default;
+
+@import 'node_modules/ag-grid-community/src/styles/ag-grid.scss';
+@import 'node_modules/ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham.scss';
+
+$custom-panel-item-padding: 14.5px 14px;
+$custom-panel-item-margin: 0 0 0 5px;
+
+.ag-theme-adam {
+  .ag-custom-panel {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 5px -5px;
+  }
+  .ag-custom-panel-filter-quicktext {
+    padding: $custom-panel-item-padding;
+    border-color: rgba(0, 0, 0, 0.23);
+    border-width: 1;
+  }
+  .ag-custom-panel-filter-button {
+    padding: $custom-panel-item-padding;
+    margin: $custom-panel-item-margin;
+  }
+  .ag-custom-panel-sorting-button {
+    padding: $custom-panel-item-padding;
+    margin: $custom-panel-item-margin;
+  }
+}

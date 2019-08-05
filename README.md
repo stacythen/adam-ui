@@ -16,3 +16,4 @@ Library of reusable components
 
 - [ ] Storybook with typescript (https://storybook.js.org/docs/configurations/typescript-config/) - storybook as package
 - [ ] review scripts
+- [ ] import SCSS

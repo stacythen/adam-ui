@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Sample from '../src/Sample';
+import DataGrid from '../src/DataGrid';
 
-describe('Sample', () => {
+describe('DataGrid', () => {
   it('should render properly', () => {
-    const link = shallow(<Sample>Link to Google</Sample>);
+    const link = shallow(<DataGrid />);
     expect(link).toMatchSnapshot();
   });
 });

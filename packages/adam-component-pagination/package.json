@@ -1,8 +1,7 @@
 {
-  "name": "adam-component-sample",
-  "version": "0.0.1",
-  "description": "> TODO: description",
-  "author": "your name",
+  "name": "adam-component-pagination",
+  "version": "1.0.0-alpha",
+  "author": "Stacy Then",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "directories": {
@@ -13,7 +12,8 @@
     "lib"
   ],
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc -w",
+    "build": "tsc"
   },
   "peerDependencies": {
     "react": "^16.8.6",
