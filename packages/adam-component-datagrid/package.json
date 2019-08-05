@@ -26,7 +26,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "adam-component-pagination": "1.0.0-alpha",
+    "adam-component-pagination": "^1.0.0-alpha",
     "ag-grid-community": "^21.1.0",
     "ag-grid-react": "^21.1.0"
   },

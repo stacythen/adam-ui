@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "author": "Stacy Then",
   "dependencies": {
-    "adam-component-datagrid": "1.0.0-alpha",
-    "adam-component-pagination": "1.0.0-alpha"
+    "adam-component-datagrid": "^1.0.0-alpha",
+    "adam-component-pagination": "^1.0.0-alpha"
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
