@@ -1,28 +1,31 @@
-const { defaults } = require("jest-config");
+const { defaults } = require('jest-config');
 
 module.exports = {
-  rootDir: "..",
-  setupFiles: ["<rootDir>/scripts/setup-tests.js"],
-  roots: ["<rootDir>/packages"],
+  rootDir: '..',
+  setupFiles: ['<rootDir>/scripts/setup-tests.js'],
+  roots: ['<rootDir>/packages'],
   transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest"
+    '^.+\\.(ts|tsx)$': 'ts-jest',
   },
-  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
-  moduleFileExtensions: [...defaults.moduleFileExtensions, "ts", "tsx"],
-  snapshotSerializers: ["enzyme-to-json/serializer"],
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
+  moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
+  moduleNameMapper: {
+    "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules"
+  },
+  snapshotSerializers: ['enzyme-to-json/serializer'],
   collectCoverageFrom: [
-    "packages/**/*.{ts,tsx}",
-    "!**/node_modules/**",
-    "!packages/**/*.index",
-    "!packages/adam-ui-stories/**"
+    'packages/**/*.{ts,tsx}',
+    '!**/node_modules/**',
+    '!packages/**/*.index',
+    '!packages/adam-ui-stories/**',
   ],
-  coverageReporters: ["cobertura", "html"],
+  coverageReporters: ['cobertura', 'html'],
   coverageThreshold: {
     global: {
       branches: 0,
       functions: 0,
       lines: 0,
-      statements: 0
-    }
-  }
+      statements: 0,
+    },
+  },
 };

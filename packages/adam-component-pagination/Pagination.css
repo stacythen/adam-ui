@@ -1,0 +1,56 @@
+.pagination-panel {
+  margin: 20px 0;
+  opacity: 0.77;
+  font-size: 9pt;
+}
+
+.pagination {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.pagination > li {
+  display: inline;
+  padding: 6px;
+  margin: 0 3px;
+  cursor: pointer;
+}
+
+.pagination > li.pagination-page.active {
+  background-color: #3b82de;
+  color: #fff;
+}
+
+.pagination > li.disabled {
+  cursor: not-allowed;
+  opacity: 0.38;
+}
+
+.page-size-selector {
+  margin-left: 64px;
+}
+
+.page-size-selector .page-size-select {
+  height: 28px;
+  line-height: 28px;
+  opacity: 0.77;
+  border-radius: 4px;
+  padding-right: 2px;
+}
+
+.page-size-selector .page-size-text {
+  margin-left: 8px;
+}
+
+.pagination-summary {
+  float: right;
+  padding: 6px 0;
+}
+
+.paginator {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: 0 !important;
+}

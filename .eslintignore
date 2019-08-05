@@ -1,2 +1,3 @@
 packages/**/lib/**
 packages/**/__tests__/**
+scripts/**/*.js

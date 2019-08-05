@@ -1,3 +1,3 @@
-import DataGrid from './DataGrid';
-
-export default DataGrid;
+export * from './DataGrid';
+export { default } from './DataGrid';
+export { default as DataGrudMapperConfiguration } from './DataGridMapperConfiguration';
