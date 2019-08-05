@@ -5,8 +5,8 @@ before_install:
   - npm install -g npm@6.9
 install:
   - npm ci
-  - npm run build
   - npm run bootstrap
+  - npm run build
 script:
   - npm run test:ci
   - npm run lint
