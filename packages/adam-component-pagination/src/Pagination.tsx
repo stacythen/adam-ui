@@ -4,7 +4,7 @@ import { IPaginationInfo } from './types';
 import PaginationSizeSelector from './PaginationSizeSelector';
 import PaginationSummary from './PaginationSummary';
 
-import '../Pagination.css';
+import './Pagination.css';
 
 export interface IPaginationProps {
   pageSize: number;

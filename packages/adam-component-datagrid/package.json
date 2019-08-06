@@ -13,9 +13,10 @@
   ],
   "scripts": {
     "tsc": "tsc -w",
-    "build": "tsc",
+    "build": "tsc && npm run build:css && npm run copy-static-files",
     "build:css": "node-sass src/ -o 'src' ",
-    "watch:css": "npm run build:css && node-sass src/ -o src/ -w -r"
+    "watch:css": "npm run build:css && node-sass src/ -o src/ -w -r",
+    "copy-static-files": "copyfiles -u 1 src/**/*.css src/**/*.scss lib/"
   },
   "peerDependencies": {
     "css-loader": "^0.28.7",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@types/node-sass": "^4.11.0",
+    "copyfiles": "^2.1.1",
     "node-sass": "^4.12.0"
   }
 }
