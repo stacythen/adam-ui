@@ -27,7 +27,78 @@ exports[`Pagination should render properly 1`] = `
   </button>
   <ul
     className="pagination"
-  />
+  >
+    <li
+      className="pagination-page"
+      key="1"
+      onClick={[Function]}
+    >
+      1
+    </li>
+    <li
+      className="pagination-page active"
+      key="2"
+      onClick={[Function]}
+    >
+      2
+    </li>
+    <li
+      className="pagination-page"
+      key="3"
+      onClick={[Function]}
+    >
+      3
+    </li>
+    <li
+      className="pagination-page"
+      key="4"
+      onClick={[Function]}
+    >
+      4
+    </li>
+    <li
+      className="pagination-page"
+      key="5"
+      onClick={[Function]}
+    >
+      5
+    </li>
+    <li
+      className="pagination-page"
+      key="6"
+      onClick={[Function]}
+    >
+      6
+    </li>
+    <li
+      className="pagination-page"
+      key="7"
+      onClick={[Function]}
+    >
+      7
+    </li>
+    <li
+      className="pagination-page"
+      key="8"
+      onClick={[Function]}
+    >
+      8
+    </li>
+    <li
+      className="pagination-page"
+      key="9"
+      onClick={[Function]}
+    >
+      9
+    </li>
+    <li
+      className="pagination-page"
+      key="10"
+      onClick={[Function]}
+    >
+      10
+    </li>
+  </ul>
   <button
     className="paginator"
     disabled={false}

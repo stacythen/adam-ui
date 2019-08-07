@@ -22,6 +22,7 @@ export interface IDataGrid {
   /** Free version of server-side data source */
   extendedDatasource?: IExtendedDatasource;
   quickFilter?: boolean;
+  quickFilterPlaceholder?: string;
   resetFilter?: boolean;
   resetSorting?: boolean;
   quickFilterRenderer?: (
@@ -45,6 +46,7 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
     theme,
     extendedDatasource,
     quickFilter,
+    quickFilterPlaceholder,
     resetFilter,
     resetSorting,
     resetFilterRenderer,
@@ -298,6 +300,7 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
               <QuickTextFilter
                 ref={quickTextFilterRef}
                 filter={quickFilterText}
+                quickFilterPlaceholder={quickFilterPlaceholder}
                 onQuickFilterChanged={onQuickFilterChanged}
               />
             ))}
