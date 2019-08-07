@@ -1,6 +1,6 @@
 {
   "name": "adam-component-datagrid",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-alpha.0",
   "author": "your name",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -13,9 +13,10 @@
   ],
   "scripts": {
     "tsc": "tsc -w",
-    "build": "tsc",
+    "build": "tsc && npm run build:css && npm run copy-static-files",
     "build:css": "node-sass src/ -o 'src' ",
-    "watch:css": "npm run build:css && node-sass src/ -o src/ -w -r"
+    "watch:css": "npm run build:css && node-sass src/ -o src/ -w -r",
+    "copy-static-files": "copyfiles -u 1 src/**/*.css src/**/*.scss lib/"
   },
   "peerDependencies": {
     "css-loader": "^0.28.7",
@@ -26,12 +27,13 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "adam-component-pagination": "^1.0.0-alpha",
+    "adam-component-pagination": "^1.0.0-alpha.0",
     "ag-grid-community": "^21.1.0",
     "ag-grid-react": "^21.1.0"
   },
   "devDependencies": {
     "@types/node-sass": "^4.11.0",
+    "copyfiles": "^2.1.1",
     "node-sass": "^4.12.0"
   }
 }

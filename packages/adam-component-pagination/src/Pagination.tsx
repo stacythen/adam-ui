@@ -4,7 +4,7 @@ import { IPaginationInfo } from './types';
 import PaginationSizeSelector from './PaginationSizeSelector';
 import PaginationSummary from './PaginationSummary';
 
-import '../Pagination.css';
+import './Pagination.css';
 
 export interface IPaginationProps {
   pageSize: number;
@@ -76,64 +76,56 @@ const Pagination = (props: PaginationProps): React.ReactElement => {
   const buildPages = (paginationInfo: IPaginationInfo) => {
     const { currentPage } = props;
 
-    const pages = [];
-    const pager = [];
-    for (let i = paginationInfo.first_page; i <= paginationInfo.last_page; i++) {
-      const isActive = currentPage === i ? ' active' : '';
-      pager.push(
-        <li key={i} className={'pagination-page' + isActive} onClick={onPaginatorClicked(i)}>
-          {i}
-        </li>
-      );
-    }
-
-    pages.push(<ul className="pagination">{pager}</ul>);
-
-    // Prev Page
-    pages.unshift(
-      <button
-        className="paginator"
-        onClick={onPaginatorClicked(paginationInfo.previous_page, onPreviousClicked)}
-        disabled={!paginationInfo.has_previous_page}
-      >
-        &lt;
-      </button>
+    const pager = (currentPage: number) => (
+      <React.Fragment>
+        {new Array(paginationInfo.last_page).map((_, index) => {
+          const isActive = currentPage === index ? ' active' : '';
+          return (
+            <li key={index.toString()} className={'pagination-page' + isActive} onClick={onPaginatorClicked(index)}>
+              {index}
+            </li>
+          );
+        })}
+      </React.Fragment>
     );
 
-    // First Page
-    pages.unshift(
-      <button
-        className="paginator"
-        onClick={onPaginatorClicked(1, onFirstClicked)}
-        disabled={!paginationInfo.has_previous_page}
-      >
-        ≪
-      </button>
+    return (
+      <>
+        <button
+          name="firstPage"
+          className="paginator"
+          onClick={onPaginatorClicked(1, onFirstClicked)}
+          disabled={!paginationInfo.has_previous_page}
+        >
+          ≪
+        </button>
+        <button
+          name="prevPage"
+          className="paginator"
+          onClick={onPaginatorClicked(paginationInfo.previous_page, onPreviousClicked)}
+          disabled={!paginationInfo.has_previous_page}
+        >
+          &lt;
+        </button>
+        <ul className="pagination">{pager(currentPage)}</ul>
+        <button
+          name="nextPage"
+          className="paginator"
+          onClick={onPaginatorClicked(paginationInfo.next_page, onNextClicked)}
+          disabled={!paginationInfo.has_next_page}
+        >
+          &gt;
+        </button>
+        <button
+          name="lastPage"
+          className="paginator"
+          onClick={onPaginatorClicked(paginationInfo.total_pages, onLastClicked)}
+          disabled={!(paginationInfo.has_next_page && paginationInfo.current_page !== paginationInfo.total_pages)}
+        >
+          ≫
+        </button>
+      </>
     );
-
-    // Next Page
-    pages.push(
-      <button
-        className="paginator"
-        onClick={onPaginatorClicked(paginationInfo.next_page, onNextClicked)}
-        disabled={!paginationInfo.has_next_page}
-      >
-        &gt;
-      </button>
-    );
-
-    // Last Page
-    pages.push(
-      <button
-        className="paginator"
-        onClick={onPaginatorClicked(paginationInfo.total_pages, onLastClicked)}
-        disabled={!(paginationInfo.has_next_page && paginationInfo.current_page !== paginationInfo.total_pages)}
-      >
-        ≫
-      </button>
-    );
-
-    return pages;
   };
 
   return (

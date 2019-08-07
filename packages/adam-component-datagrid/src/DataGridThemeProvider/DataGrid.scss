@@ -1,7 +1,7 @@
 // Colors
 $odd-row-background-color: #f3f3f3;
 $border-color: #999999 !default;
-$background-color: #fff !default;
+$background-color: transparent !default;
 $foreground-color: #777777 !default;
 $header-background-color: $odd-row-background-color !default;
 $header-foreground-color: $foreground-color !default;
@@ -38,7 +38,8 @@ $custom-panel-item-margin: 0 0 0 5px;
   .ag-custom-panel-filter-quicktext {
     padding: $custom-panel-item-padding;
     border-color: rgba(0, 0, 0, 0.23);
-    border-width: 1;
+    border-width: 1px;
+    width: 20%;
   }
   .ag-custom-panel-filter-button {
     padding: $custom-panel-item-padding;
