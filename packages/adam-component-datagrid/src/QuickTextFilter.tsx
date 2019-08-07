@@ -3,6 +3,7 @@ import React, { useState, forwardRef, useImperativeHandle } from 'react';
 export const KEY_CODE_ENTER = 13;
 export interface IQuickTextFilter {
   filter?: string;
+  quickFilterPlaceholder?: string;
   onQuickFilterChanged: (filter: string | undefined) => void;
 }
 export interface QuickTextFilterHandler {
@@ -10,7 +11,7 @@ export interface QuickTextFilterHandler {
 }
 
 const QuickTextFilter: React.RefForwardingComponent<QuickTextFilterHandler, IQuickTextFilter> = (props, ref) => {
-  const { onQuickFilterChanged } = props;
+  const { onQuickFilterChanged, quickFilterPlaceholder = 'Search by keyword' } = props;
   const [filter, setFilter] = useState(props.filter);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +38,7 @@ const QuickTextFilter: React.RefForwardingComponent<QuickTextFilterHandler, IQui
       value={filter}
       onChange={onChange}
       onKeyPress={onKeyPress}
+      placeholder={quickFilterPlaceholder}
     />
   );
 };
