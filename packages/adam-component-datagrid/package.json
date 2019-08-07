@@ -1,6 +1,6 @@
 {
   "name": "adam-component-datagrid",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "author": "your name",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -27,7 +27,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "adam-component-pagination": "^1.0.0-alpha.0",
+    "adam-component-pagination": "^1.0.0-alpha.1",
     "ag-grid-community": "^21.1.0",
     "ag-grid-react": "^21.1.0"
   },
