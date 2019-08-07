@@ -76,19 +76,19 @@ const Pagination = (props: PaginationProps): React.ReactElement => {
   const buildPages = (paginationInfo: IPaginationInfo) => {
     const { currentPage } = props;
 
-    const pager = (currentPage: number) => (
+    const pager = (
       <React.Fragment>
-        {new Array(paginationInfo.last_page).map((_, index) => {
-          const isActive = currentPage === index ? ' active' : '';
+        {new Array(paginationInfo.last_page).fill({}).map((_, index) => {
+          const i = paginationInfo.first_page + index;
+          const isActive = currentPage === i ? ' active' : '';
           return (
-            <li key={index.toString()} className={'pagination-page' + isActive} onClick={onPaginatorClicked(index)}>
-              {index}
+            <li key={i.toString()} className={'pagination-page' + isActive} onClick={onPaginatorClicked(i)}>
+              {i}
             </li>
           );
         })}
       </React.Fragment>
     );
-
     return (
       <>
         <button
@@ -107,7 +107,7 @@ const Pagination = (props: PaginationProps): React.ReactElement => {
         >
           &lt;
         </button>
-        <ul className="pagination">{pager(currentPage)}</ul>
+        <ul className="pagination">{pager}</ul>
         <button
           name="nextPage"
           className="paginator"

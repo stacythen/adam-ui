@@ -30,7 +30,7 @@ var columnDefs = [
 storiesOf("DataGrid", module)
   .add("default", () => <DataGrid theme={'ag-theme-adam'} columnDefs={columnDefs} rowData={[]} />)
   .add("with Pagination", () => <DataGrid theme={'ag-theme-adam'} columnDefs={columnDefs} rowData={[]}  pagination={true} paginationPageSize={10} />)
-  .add("with Quick Text Filter", () => <DataGrid theme={'ag-theme-adam'} columnDefs={columnDefs} rowData={[]} quickFilter={true} quickFilterText={'test'} />)
+  .add("with Quick Text Filter", () => <DataGrid theme={'ag-theme-adam'} columnDefs={columnDefs} rowData={[]} quickFilter={true} quickFilterText={'test'} quickFilterPlaceholder={'Search Placeholder'} />)
   .add("with Reset Filter Button", () => <DataGrid theme={'ag-theme-adam'} columnDefs={columnDefs} rowData={[]} resetFilter={true} />)
   .add("with Reset Filter Button (Custom Renderer)", () => <DataGrid theme={'ag-theme-adam'} columnDefs={columnDefs} rowData={[]} resetFilter={true} resetFilterRenderer={(onResetFilter)=> {
     return (<button onClick={onResetFilter}>Custom Reset Filter Button</button>)
