@@ -1,11 +1,11 @@
 {
   "name": "adam-ui-stories",
   "private": true,
-  "version": "0.0.2-alpha.1",
+  "version": "0.0.2-alpha.2",
   "author": "Stacy Then",
   "dependencies": {
-    "adam-component-datagrid": "^1.0.0-alpha.1",
-    "adam-component-pagination": "^1.0.0-alpha.1"
+    "adam-component-datagrid": "^1.0.0-alpha.2",
+    "adam-component-pagination": "^1.0.0-alpha.2"
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
