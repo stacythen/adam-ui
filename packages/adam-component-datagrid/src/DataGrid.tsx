@@ -91,18 +91,20 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
   const _onGridReady = (event: GridReadyEvent) => {
     gridApi.current = event.api;
 
-    if (
-      extendedDatasource &&
-      extendedDatasource.filterModel &&
-      Object.keys(extendedDatasource.filterModel).length > 0
-    ) {
+    if (extendedDatasource) {
+      const filterModel =
+        extendedDatasource.filterModel && Object.keys(extendedDatasource.filterModel).length > 0
+          ? extendedDatasource.filterModel
+          : undefined;
       deepSetRowsParams({
         pageNumber: customPagination.currentPage,
         pageSize: customPagination.pageSize,
         sortModel: event.api.getSortModel(),
-        filterModel: extendedDatasource.filterModel,
+        filterModel: filterModel,
       });
-      event.api.setFilterModel(extendedDatasource.filterModel); // This will trigger AgGrid.onFilterChanged
+      if (filterModel) {
+        event.api.setFilterModel(filterModel); // This will trigger AgGrid.onFilterChanged
+      }
     }
     if (onGridReady) {
       onGridReady(event);
