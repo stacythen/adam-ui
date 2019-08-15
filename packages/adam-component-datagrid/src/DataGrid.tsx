@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/prefer-interface */
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-
 import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
-
 import {
   GridApi,
   GridReadyEvent,
@@ -17,6 +15,7 @@ import { DEFAULT_COL_DEF, DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE } from './const
 import { isDeepEqual } from './utils';
 import QuickTextFilter, { QuickTextFilterHandler } from './QuickTextFilter';
 import Pagination, { IPaginationProps } from 'adam-component-pagination';
+import merge from 'lodash/merge';
 
 export interface IDataGrid {
   /** Free version of server-side data source */
@@ -236,7 +235,6 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
         });
 
         setRowData(rowsThisPage);
-        gridApi.current.setFilterModel(filterModel); // TODO: Ag-Grid filter will reset, force to set filter
         if (rowsThisPage && rowsThisPage.length > 0) {
           toggleLoadingOverlay(false);
         } else {
@@ -293,7 +291,7 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
   const isAdamTheme = theme === 'ag-theme-adam';
   return (
     <DataGridThemeProvider theme={theme}>
-      <div className="adam-ui-gridwrapper">
+      <div className={`adam-ui-gridwrapper${props.floatingFilter ? ' floatingFilter' : ''}`}>
         <div className="ag-custom-panel">
           {quickFilter &&
             (quickFilterRenderer ? (
@@ -325,7 +323,7 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
         </div>
 
         <AgGridReact
-          defaultColDef={{ ...DEFAULT_COL_DEF, ...props.defaultColDef }}
+          defaultColDef={merge(DEFAULT_COL_DEF, props.defaultColDef)}
           onGridReady={_onGridReady}
           pagination={pagination}
           paginationPageSize={customPagination.pageSize}

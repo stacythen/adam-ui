@@ -3,6 +3,7 @@
 import { FILTER_TYPE, FilterModel } from './FilterProps';
 import { SortModel } from './SortProps';
 import findKey from 'lodash/findKey';
+import { DateFilterModel, TextFilterModel, NumberFilterModel } from 'ag-grid-community';
 
 interface SortOptionsMap {
   asc: string;
@@ -103,22 +104,38 @@ class DataGridMapperConfiguration {
     }
   };
 
-  private parseFilterByFilterType = (filterType: string, filter: string | number) => {
-    switch (filterType) {
-      case FILTER_TYPE.date:
-        return this.dateParser && typeof filter === 'string' ? this.dateParser(filter) : filter;
-      case FILTER_TYPE.number:
-        return Number(filter);
-      default:
-        return filter;
+  private parseFilterByFilterType = (filterModel: TextFilterModel | NumberFilterModel | DateFilterModel) => {
+    switch (filterModel.type) {
+      case FILTER_TYPE.date: {
+        const eFilterModel = filterModel as DateFilterModel;
+        return this.dateParser && typeof eFilterModel.dateFrom === 'string'
+          ? this.dateParser(eFilterModel.dateFrom)
+          : eFilterModel.dateFrom;
+      }
+      case FILTER_TYPE.number: {
+        const eFilterModel = filterModel as NumberFilterModel;
+        return eFilterModel.filter;
+      }
+      default: {
+        const eFilterModel = filterModel as TextFilterModel;
+        return eFilterModel.filter;
+      }
     }
   };
 
-  private formatFilterByFilterType = (filterType: string, filter: string | number) => {
+  private formatFilterByFilterType = (filterType: string, operator: string, filter: string | number) => {
     if (filterType === FILTER_TYPE.date) {
-      return this.dateFormatter && typeof filter === 'string' ? this.dateFormatter(filter) : filter;
+      return {
+        filterType: filterType,
+        type: findKey(this.filterOptionsMap, v => v === operator),
+        dateFrom: this.dateFormatter && typeof filter === 'string' ? this.dateFormatter(filter) : filter,
+      };
     } else {
-      return filter;
+      return {
+        filterType: filterType,
+        type: findKey(this.filterOptionsMap, v => v === operator),
+        filter: filter,
+      };
     }
   };
 
@@ -158,11 +175,11 @@ class DataGridMapperConfiguration {
       result = object.reduce<any>((curr, c) => {
         return {
           ...curr,
-          [c[this.filterPropertyField!]]: {
-            filterType: filterType,
-            type: findKey(this.filterOptionsMap, v => v === c[this.filterOperatorField!]),
-            filter: this.formatFilterByFilterType(filterType, c[this.filterValueField!]),
-          },
+          [c[this.filterPropertyField!]]: this.formatFilterByFilterType(
+            filterType,
+            c[this.filterOperatorField!],
+            c[this.filterValueField!]
+          ),
         };
       }, result);
       return result;
@@ -190,7 +207,7 @@ class DataGridMapperConfiguration {
           return {
             [this.filterPropertyField!]: key,
             [this.filterOperatorField!]: this.filterOptionsMap![object[key].type],
-            [this.filterValueField!]: this.parseFilterByFilterType(object[key].type, object[key].filter),
+            [this.filterValueField!]: this.parseFilterByFilterType(object[key]),
           };
         })
       : undefined;

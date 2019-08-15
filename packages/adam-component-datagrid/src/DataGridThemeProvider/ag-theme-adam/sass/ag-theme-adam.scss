@@ -1,0 +1,148 @@
+@import '../vars/ag-theme-adam-vars';
+@import './ag-theme-adam-common';
+
+.ag-theme-adam {
+  @include ag-theme-adam($params);
+
+  .ag-filter-toolpanel-body {
+    background-color: $background-color;
+  }
+
+  .ag-header-cell,
+  .ag-header-group-cell {
+    &:not(.ag-header-group-cell-no-group) {
+      border-top-width: 0px;
+    }
+  }
+
+  .ag-header-cell::after,
+  .ag-header-group-cell::after {
+    height: 100%;
+  }
+
+  .floatingFilter .ag-header-row:nth-child(2) > .ag-header-cell::after,
+  .floatingFilter .ag-header-row:nth-child(2) > .ag-header-group-cell::after {
+    margin-top: 0;
+    height: 33px;
+  }
+
+  .floatingFilter .ag-overlay-no-rows-wrapper.ag-layout-auto-height {
+    padding-top: 83px;
+  }
+
+  .ag-floating-filter-full-body,
+  .ag-floating-filter-full-body .ag-react-container {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: flex-start;
+    line-height: normal;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ag-floating-filter-input {
+    color: inherit;
+    font-family: inherit;
+    background: #fbfbfb 0% 0% no-repeat padding-box;
+    border: 1px solid #999999;
+    border-radius: 3px;
+    opacity: 1;
+    height: 33px;
+    padding: 4px 6px;
+  }
+
+  .ag-date-floating-filter-select ~ div,
+  .ag-date-floating-filter-select ~ div > div,
+  .ag-date-floating-filter-select ~ div .rw-datetime-picker.rw-widget,
+  .ag-date-floating-filter-select ~ div .rw-widget-picker.rw-widget-container {
+    height: 33px;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  .ag-date-floating-filter-select ~ div {
+    margin-left: -3px;
+  }
+
+  .rw-widget-container {
+    border: 1px solid #999999;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .ag-date-floating-filter-select ~ div input.rw-widget-input.rw-input {
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    background: #fbfbfb 0% 0% no-repeat padding-box;
+    opacity: 1;
+    height: 100%;
+    padding: 4px 6px;
+    border-width: 0;
+  }
+
+  .rw-select.rw-select-bordered {
+    border-left-width: 0;
+  }
+
+  .ag-floating-filter-select {
+    color: inherit;
+    font-family: inherit;
+    background: #efefef 0% 0% no-repeat padding-box;
+    border: 1px solid #999999;
+    border-radius: 3px;
+    opacity: 1;
+    height: 33px;
+    padding: 4px 6px;
+    width: 100%;
+  }
+
+  .ag-floating-filter-select.ag-number-floating-filter-select,
+  .ag-floating-filter-select.ag-date-floating-filter-select {
+    border-radius: 3px 0 0 3px;
+    -webkit-border-radius: 3px 0 0 3px;
+    width: auto;
+  }
+
+  .ag-floating-filter-select ~ .ag-floating-filter-input {
+    border-radius: 0 3px 3px 0;
+    margin-left: -3px;
+  }
+
+  .ag-react-container > a,
+  .ag-react-container > a:active,
+  .ag-react-container > a:visited {
+    color: $anchor-foreground-color;
+    text-decoration: none;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .ag-cell.center-align {
+    text-align: center;
+  }
+
+  .ag-custom-panel {
+    background-color: $default-background;
+  }
+  .ag-custom-panel {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 5px -5px;
+  }
+  .ag-custom-panel-filter-quicktext {
+    padding: $custom-panel-item-padding;
+    border-color: rgba(0, 0, 0, 0.23);
+    border-width: 1px;
+    width: 20%;
+  }
+  .ag-custom-panel-filter-button {
+    padding: $custom-panel-item-padding;
+    margin: $custom-panel-item-margin;
+  }
+  .ag-custom-panel-sorting-button {
+    padding: $custom-panel-item-padding;
+    margin: $custom-panel-item-margin;
+  }
+}

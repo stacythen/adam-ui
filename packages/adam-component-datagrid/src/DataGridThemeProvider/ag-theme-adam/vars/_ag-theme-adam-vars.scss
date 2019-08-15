@@ -1,0 +1,195 @@
+@import 'node_modules/ag-grid-community/src/styles/ag-theme-base/vars/flat-colors';
+
+$foreground-opacity: 0.87 !default;
+$secondary-foreground-color-opacity: 0.54 !default;
+$disabled-foreground-color-opacity: 0.38 !default;
+
+// Sizing
+$grid-size: 6px !default;
+$icon-size: 16px !default;
+
+// these three should be changed in environment.ts, too
+$row-height: $grid-size * 7 !default;
+// theme shortcuts
+$default-background: transparent !default;
+$chrome-background: #f3f3f3 !default;
+$active: #0091ea !default;
+$foreground-color: #555555 !default;
+$border-color: $flat-silver !default;
+$icon-color: $flat-gray-4 !default;
+$alt-icon-color: $default-background !default;
+$alt-background: $flat-gray-1 !default;
+$odd-row-background-color: #f3f3f3 !default;
+$header-cell-moving-background-color: $default-background !default;
+
+// Adam Theme
+$cell-horizontal-border: 1px solid transparentize($border-color, 0.5) !default;
+$anchor-foreground-color: #3b82de !default;
+$custom-panel-item-padding: 14.5px 14px;
+$custom-panel-item-margin: 0 0 0 5px;
+
+// Derived from above
+$foreground-color: rgba($foreground-color, $foreground-opacity) !default; // foreground
+$secondary-foreground-color: rgba(
+  $foreground-color,
+  $secondary-foreground-color-opacity
+) !default; // foreground-secondary
+$disabled-foreground-color: rgba($foreground-color, $disabled-foreground-color-opacity) !default; // foreground-disabled
+$input-border-color: $flat-gray-3 !default;
+$input-disabled-background-color: #ebebeb !default;
+
+$primary-color: $active !default;
+$accent-color: $active !default;
+$range-selection-background-color: transparentize($active, 0.8) !default;
+$range-selection-chart-category-background-color: rgba(0, 255, 132, 0.1) !default;
+$range-selection-chart-background-color: rgba(0, 88, 255, 0.1) !default;
+$ag-range-selected-color-1: opacify($range-selection-background-color, 0.1) !default;
+$ag-range-selected-color-2: opacify($range-selection-background-color, 0.2) !default;
+$ag-range-selected-color-3: opacify($range-selection-background-color, 0.3) !default;
+$ag-range-selected-color-4: opacify($range-selection-background-color, 0.4) !default;
+$range-selection-highlight-color: $active !default;
+$selected-color: lighten($active, 40) !default;
+
+$background-color: $default-background !default;
+
+$editor-background-color: $chrome-background !default;
+$panel-background-color: $chrome-background !default;
+$tool-panel-background-color: $chrome-background !default;
+$header-background-color: $chrome-background !default;
+$header-cell-hover-background-color: $header-background-color !default;
+$header-foreground-color: #777777 !default;
+
+$hover-color: $alt-background !default;
+$chip-background-color: darken($alt-background, 5) !default;
+
+$row-stub-background-color: inherit !default;
+$row-floating-background-color: inherit !default;
+
+// delta changes
+$cell-data-changed-color: #fce4ec !default;
+$value-change-delta-up-color: #43a047 !default;
+$value-change-delta-down-color: #e53935 !default;
+$value-change-value-highlight-background-color: transparentize(#16a085, 0.5) !default;
+
+$header-height: $grid-size * 8 !default;
+$virtual-item-height: $grid-size * 7 !default;
+$row-border-width: 0px !default;
+
+$toolpanel-indent-size: $grid-size + $icon-size !default;
+$row-group-indent-size: $grid-size * 3 + $icon-size !default;
+$cell-horizontal-padding: $grid-size * 3 !default;
+
+$header-icon-size: 14px !default;
+$border-radius: 2px;
+
+// Fonts
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
+  sans-serif !default;
+
+$font-size: 12px !default;
+$font-weight: 400 !default;
+
+$secondary-font-family: $font-family !default; //font-secondary
+$secondary-font-size: 12px !default; // font-secondary-size
+$secondary-font-weight: 600 !default; // font-secondary-weight
+$card-radius: 2px !default;
+$card-shadow: none !default;
+
+$tooltip-background-color: lighten($flat-gray-2, 5%) !default;
+$tooltip-foreground-color: $foreground-color !default;
+$tooltip-border-radius: $border-radius !default;
+$tooltip-border-color: $tooltip-background-color !default;
+
+// Icons
+$icon-font-family: 'agGridBalham' !default;
+$icons-data: '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' !default;
+
+@import 'node_modules/ag-grid-community/src/styles/ag-theme-base/vars/ag-theme-base-vars';
+
+$params: (
+  font-family: $font-family,
+  font-size: $font-size,
+  font-weight: $font-weight,
+  secondary-font-family: $secondary-font-family,
+  secondary-font-size: $secondary-font-size,
+  secondary-font-weight: $secondary-font-weight,
+  accent-color: $accent-color,
+  primary-color: $primary-color,
+  hover-color: $hover-color,
+  selected-color: $selected-color,
+  default-background: $default-background,
+  background-color: $background-color,
+  foreground-color: $foreground-color,
+  foreground-opacity: $foreground-opacity,
+  secondary-foreground-color-opacity: $secondary-foreground-color-opacity,
+  secondary-foreground-color: $secondary-foreground-color,
+  disabled-foreground-color-opacity: $disabled-foreground-color-opacity,
+  disabled-foreground-color: $disabled-foreground-color,
+  border-color: $border-color,
+  scroll-spacer-border: $scroll-spacer-border,
+  panel-background-color: $panel-background-color,
+  tool-panel-background-color: $tool-panel-background-color,
+  header-foreground-color: $header-foreground-color,
+  header-background-color: $header-background-color,
+  header-cell-hover-background-color: $header-cell-hover-background-color,
+  header-cell-moving-background-color: $header-cell-moving-background-color,
+  odd-row-background-color: $odd-row-background-color,
+  row-stub-background-color: $row-stub-background-color,
+  row-floating-background-color: $row-floating-background-color,
+  cell-data-changed-color: $cell-data-changed-color,
+  chip-background-color: $chip-background-color,
+  card-background-color: $background-color,
+  value-change-delta-up-color: $value-change-delta-up-color,
+  value-change-delta-down-color: $value-change-delta-down-color,
+  value-change-value-highlight-background-color: $value-change-value-highlight-background-color,
+  editor-background-color-color: $editor-background-color,
+  input-border-color: $input-border-color,
+  input-disabled-background-color: $input-disabled-background-color,
+  icon-color: $icon-color,
+  alt-icon-color: $alt-icon-color,
+  icon-opacity: $foreground-opacity,
+  range-selection-background-color: $range-selection-background-color,
+  range-selection-chart-background-color: $range-selection-chart-background-color,
+  range-selection-chart-category-background-color: $range-selection-chart-category-background-color,
+  range-selection-highlight-color: $range-selection-highlight-color,
+  ag-range-selected-color-1: $ag-range-selected-color-1,
+  ag-range-selected-color-2: $ag-range-selected-color-2,
+  ag-range-selected-color-3: $ag-range-selected-color-3,
+  ag-range-selected-color-4: $ag-range-selected-color-4,
+  grid-size: $grid-size,
+  input-height: $grid-size * 4,
+  icon-size: $icon-size,
+  header-icon-size: $header-icon-size,
+  header-height: $header-height,
+  row-height: $row-height,
+  row-border-width: $row-border-width,
+  virtual-item-height: $virtual-item-height,
+  rich-select-item-height: $row-height,
+  cell-horizontal-padding: $cell-horizontal-padding,
+  cell-horizontal-border: $cell-horizontal-border,
+  toolpanel-indent-size: $toolpanel-indent-size,
+  row-group-indent-size: $row-group-indent-size,
+  button-text-transform: uppercase,
+  card-radius: $card-radius,
+  card-shadow: $card-shadow,
+  use-icons-for-pager-buttons: true,
+  tooltip-background-color: $tooltip-background-color,
+  tooltip-foreground-color: $tooltip-foreground-color,
+  tooltip-padding: $tooltip-padding,
+  tooltip-border-radius: $tooltip-border-radius,
+  tooltip-border-color: $tooltip-border-color,
+  tooltip-border-width: $tooltip-border-width,
+  tooltip-border-style: $tooltip-border-style,
+  dialog-background-color: $dialog-background-color,
+  dialog-border-size: $dialog-border-size,
+  dialog-border-style: $dialog-border-style,
+  dialog-border-color: $dialog-border-color,
+  dialog-title-background-color: $dialog-title-background-color,
+  dialog-title-foreground-color: $dialog-title-foreground-color,
+  dialog-title-height: $dialog-title-height,
+  dialog-title-font-family: $dialog-title-font-family,
+  dialog-title-font-size: $dialog-title-font-size,
+  dialog-title-font-weight: $dialog-title-font-weight,
+  dialog-title-padding: $dialog-title-padding,
+  dialog-title-icon-size: $dialog-title-icon-size,
+);
