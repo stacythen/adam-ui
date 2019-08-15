@@ -12,10 +12,18 @@ Library of reusable components
 2. `npm run bootstrap`
 3. `npm run dev`
 
+## Packages
+
+This git repository is a monorepo built using [Lerna](//lernajs.io). It contains several packages:
+| Package | Version | Description |
+|------|----|----|
+| [`adam-component-datagrid`](/packages/adam-component-datagrid) | [![npm](https://img.shields.io/npm/v/adam-component-datagrid.svg?maxAge=3600)](https://www.npmjs.com/package/adam-component-datagrid) | Data Grid component |
+| [`adam-component-pagination`](/packages/adam-component-pagination) | [![npm](https://img.shields.io/npm/v/adam-component-pagination.svg?maxAge=3600)](https://www.npmjs.com/package/adam-component-pagination) | Data Grid component |
+
 ## TODO
 
 - [ ] Storybook with typescript (https://storybook.js.org/docs/configurations/typescript-config/) - storybook as package
-- [ ] review scripts
-- [ ] import SCSS
+- [ ] publish storybook
+- [x] review scripts
 - [ ] Add Changelog
 - [ ] Automate publish
