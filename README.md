@@ -15,10 +15,11 @@ Library of reusable components
 ## Packages
 
 This git repository is a monorepo built using [Lerna](//lernajs.io). It contains several packages:
-| Package | Version | Description |
-|------|----|----|
-| [`adam-component-datagrid`](/packages/adam-component-datagrid) | [![npm](https://img.shields.io/npm/v/adam-component-datagrid.svg?maxAge=3600)](https://www.npmjs.com/package/adam-component-datagrid) | Data Grid component |
-| [`adam-component-pagination`](/packages/adam-component-pagination) | [![npm](https://img.shields.io/npm/v/adam-component-pagination.svg?maxAge=3600)](https://www.npmjs.com/package/adam-component-pagination) | Data Grid component |
+
+| Package                                                            | Version                                                                                                                                   | Description          |
+| ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| [`adam-component-datagrid`](/packages/adam-component-datagrid)     | [![npm](https://img.shields.io/npm/v/adam-component-datagrid.svg?maxAge=3600)](https://www.npmjs.com/package/adam-component-datagrid)     | Data Grid component  |
+| [`adam-component-pagination`](/packages/adam-component-pagination) | [![npm](https://img.shields.io/npm/v/adam-component-pagination.svg?maxAge=3600)](https://www.npmjs.com/package/adam-component-pagination) | Pagination component |
 
 ## TODO
 
