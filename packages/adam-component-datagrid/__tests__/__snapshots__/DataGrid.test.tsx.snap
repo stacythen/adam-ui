@@ -11,6 +11,9 @@ exports[`DataGrid should render properly 1`] = `
     <AgGridReact
       defaultColDef={
         Object {
+          "filterParams": Object {
+            "newRowsAction": "keep",
+          },
           "resizable": true,
           "sortable": true,
         }

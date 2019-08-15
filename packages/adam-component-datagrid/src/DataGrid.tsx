@@ -22,13 +22,13 @@ export interface IDataGrid {
   extendedDatasource?: IExtendedDatasource;
   quickFilter?: boolean;
   quickFilterPlaceholder?: string;
-  resetFilter?: boolean;
-  resetSorting?: boolean;
   quickFilterRenderer?: (
     onQuickFilterChanged: (filter: string | undefined) => void,
     ref: React.RefObject<QuickTextFilterHandler>
   ) => JSX.Element;
+  resetFilter?: boolean;
   resetFilterRenderer?: (onResetFilter: () => void) => JSX.Element;
+  resetSorting?: boolean;
   resetSortingRenderer?: (onResetSorting: () => void) => JSX.Element;
 }
 
