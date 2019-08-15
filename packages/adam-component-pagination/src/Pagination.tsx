@@ -78,7 +78,7 @@ const Pagination = (props: PaginationProps): React.ReactElement => {
 
     const pager = (
       <React.Fragment>
-        {new Array(paginationInfo.last_page).fill({}).map((_, index) => {
+        {new Array(paginationInfo.last_page - paginationInfo.first_page + 1).fill({}).map((_, index) => {
           const i = paginationInfo.first_page + index;
           const isActive = currentPage === i ? ' active' : '';
           return (

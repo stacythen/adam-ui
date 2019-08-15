@@ -2,6 +2,7 @@
   "name": "adam-component-pagination",
   "version": "1.0.0-alpha.2",
   "author": "Stacy Then",
+  "description": "React pagination component",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "directories": {

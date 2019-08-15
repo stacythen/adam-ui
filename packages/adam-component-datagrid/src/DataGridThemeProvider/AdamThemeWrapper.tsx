@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IThemeWrapper } from './';
 
-import './DataGrid.css';
+import './ag-theme-adam/sass/ag-theme-adam.css';
 
 export const MAT_GRID_SIZE = 6;
 
