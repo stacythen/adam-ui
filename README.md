@@ -25,6 +25,7 @@ This git repository is a monorepo built using [Lerna](//lernajs.io). It contains
 
 - [ ] Storybook with typescript (https://storybook.js.org/docs/configurations/typescript-config/) - storybook as package
 - [ ] publish storybook
-- [x] review scripts
+- [ ] review scripts
+- [x] import scss
 - [ ] Add Changelog
 - [ ] Automate publish
