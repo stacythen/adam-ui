@@ -47,7 +47,7 @@ export default class PaginationExample extends React.Component<{}, IState> {
 }
 ```
 
-Play with this on [CodeSandbox](#https://codesandbox.io/s/adam-ui-examples-2vq0c) and read the documentation to learn more.
+Play with this on [CodeSandbox](https://codesandbox.io/s/adam-ui-examples-2vq0c) and read the documentation to learn more.
 
 ### Props
 
