@@ -4,7 +4,7 @@
 
 An ag-Grid extensions with server-side pagination supports. [Demo - Storybook coming soon](#)
 
-See [ag-Grid Documentation](#https://www.ag-grid.com) for more.
+See [ag-Grid Documentation](https://www.ag-grid.com) for more.
 
 ## Installation
 
@@ -84,7 +84,7 @@ export default class QuickStart extends React.Component<{}, IState> {
 }
 ```
 
-Play with this on [CodeSandbox](#https://codesandbox.io/s/adam-ui-examples-2vq0c) and read the documentation to learn more.
+Play with this on [CodeSandbox](https://codesandbox.io/s/adam-ui-examples-2vq0c) and read the documentation to learn more.
 
 ### Props
 
@@ -125,7 +125,7 @@ Params for the above IExtendedDatasource.getRows():
 
 ### Theming
 
-By default, ag-Grid comes with provided themes, see [ag-Grid Theme](#https://www.ag-grid.com/javascript-grid-themes-provided/).
+By default, ag-Grid comes with provided themes, see [ag-Grid Theme](https://www.ag-grid.com/javascript-grid-themes-provided/).
 
 A customized theme (`ag-theme-adam`) added in this library.
 
