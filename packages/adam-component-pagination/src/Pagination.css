@@ -54,3 +54,7 @@
   cursor: pointer;
   outline: 0 !important;
 }
+
+.paginator:disabled {
+  cursor: not-allowed;
+}

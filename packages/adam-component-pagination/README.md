@@ -53,14 +53,16 @@ Play with this on [CodeSandbox](https://codesandbox.io/s/adam-ui-examples-2vq0c)
 
 The extended props of the pagination component.
 
-| Name              | Type   | Default | Description                                       |
-| ----------------- | ------ | ------- | ------------------------------------------------- |
-| pageSize          | number |         | The number of results per page.                   |
-| currentPage       | number |         | The selected page number.                         |
-| rowCount          | number |         | The total row count to display.                   |
-| pageRange         | number | 10      | The number of pages to display.                   |
-| onFirstClicked    | func   |         | Callback fired when the first page is clicked.    |
-| onPreviousClicked | func   |         | Callback fired when the previous page is clicked. |
-| onNextClicked     | func   |         | Callback fired when the next page is clicked.     |
-| onLastClicked     | func   |         | Callback fired when the last page is clicked.     |
-| onPageChanged     | func   |         | Callback fired when the page number is changed.   |
+| Name              | Type    | Default | Description                                       |
+| ----------------- | ------- | ------- | ------------------------------------------------- |
+| pageSize          | number  |         | The number of results per page.                   |
+| currentPage       | number  |         | The selected page number.                         |
+| rowCount          | number  |         | The total row count to display.                   |
+| pageRange         | number  | 10      | The number of pages to display.                   |
+| hidePageSize      | boolean | false   | If true, page size selector will be hidden.       |
+| hidePageSummary   | boolean | false   | If true, page summary will be hidden.             |
+| onFirstClicked    | func    |         | Callback fired when the first page is clicked.    |
+| onPreviousClicked | func    |         | Callback fired when the previous page is clicked. |
+| onNextClicked     | func    |         | Callback fired when the next page is clicked.     |
+| onLastClicked     | func    |         | Callback fired when the last page is clicked.     |
+| onPageChanged     | func    |         | Callback fired when the page number is changed.   |
