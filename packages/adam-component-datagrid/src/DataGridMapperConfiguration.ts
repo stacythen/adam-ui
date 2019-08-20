@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { FILTER_TYPE, FilterModel } from './FilterProps';
-import { SortModel } from './SortProps';
+import { FILTER_TYPE, FilterModel, SortModel } from './';
 import findKey from 'lodash/findKey';
 import { DateFilterModel, TextFilterModel, NumberFilterModel } from 'ag-grid-community';
 
@@ -74,6 +73,7 @@ class DataGridMapperConfiguration {
    */
   public setDateParser = (parseDate: (date: string) => string | Date) => {
     this.dateParser = parseDate;
+    return this;
   };
 
   /** ag-grid date filter format is always YYYY-MM-DD eg 2019-05-24 value
@@ -81,6 +81,7 @@ class DataGridMapperConfiguration {
    */
   public setDateFormatter = (formatDate: (date: string | Date) => string) => {
     this.dateFormatter = formatDate;
+    return this;
   };
 
   //#endregion
@@ -105,7 +106,7 @@ class DataGridMapperConfiguration {
   };
 
   private parseFilterByFilterType = (filterModel: TextFilterModel | NumberFilterModel | DateFilterModel) => {
-    switch (filterModel.type) {
+    switch (filterModel.filterType) {
       case FILTER_TYPE.date: {
         const eFilterModel = filterModel as DateFilterModel;
         return this.dateParser && typeof eFilterModel.dateFrom === 'string'

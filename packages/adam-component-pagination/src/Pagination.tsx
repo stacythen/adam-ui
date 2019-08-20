@@ -12,6 +12,11 @@ export interface IPaginationProps {
   rowCount: number;
 }
 
+export interface IPaginationConfigProps {
+  hidePageSummary?: boolean;
+  hidePageSize?: boolean;
+}
+
 export interface IPaginationConfig {
   pageRange?: number;
 }
@@ -25,7 +30,7 @@ interface IPaginationDispatchProps {
 }
 
 const PAGE_RANGE = 10;
-type PaginationProps = IPaginationProps & IPaginationDispatchProps & IPaginationConfig;
+type PaginationProps = IPaginationProps & IPaginationConfigProps & IPaginationDispatchProps & IPaginationConfig;
 
 const Pagination = (props: PaginationProps): React.ReactElement => {
   const {
@@ -38,6 +43,8 @@ const Pagination = (props: PaginationProps): React.ReactElement => {
     onNextClicked,
     onLastClicked,
     onPageChanged,
+    hidePageSummary = false,
+    hidePageSize = false,
   } = props;
 
   const paginationInfo = Paginator(pageSize, pageRange, rowCount, currentPage);
@@ -131,8 +138,8 @@ const Pagination = (props: PaginationProps): React.ReactElement => {
   return (
     <div className={`pagination-panel`} style={{ padding: '0 18px' }}>
       {buildPages(paginationInfo)}
-      <PaginationSizeSelector pageSize={pageSize} onPageSizeChanged={handlePageSizeChanged} />
-      <PaginationSummary {...paginationInfo} />
+      {!hidePageSize && <PaginationSizeSelector pageSize={pageSize} onPageSizeChanged={handlePageSizeChanged} />}
+      {!hidePageSummary && <PaginationSummary {...paginationInfo} />}
     </div>
   );
 };
