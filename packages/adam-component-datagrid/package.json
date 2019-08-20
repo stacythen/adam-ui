@@ -1,6 +1,6 @@
 {
   "name": "adam-component-datagrid",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "description": "ag-Grid extensions with server-side pagination supports",
   "author": "Stacy Then",
   "main": "lib/index.js",
@@ -28,7 +28,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "adam-component-pagination": "^1.0.0-alpha.4",
+    "adam-component-pagination": "^1.0.0-alpha.5",
     "ag-grid-community": "^21.1.0",
     "ag-grid-react": "^21.1.0",
     "lodash": "^4.17.15"
