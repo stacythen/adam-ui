@@ -1,13 +1,7 @@
 /* eslint-disable @typescript-eslint/prefer-interface */
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
-import {
-  GridApi,
-  GridReadyEvent,
-  PaginationChangedEvent,
-  SortChangedEvent,
-  FilterChangedEvent,
-} from 'ag-grid-community';
+import { GridReadyEvent, PaginationChangedEvent, SortChangedEvent, FilterChangedEvent } from 'ag-grid-community';
 import DataGridThemeProvider, { IDataGridThemeProvider } from './DataGridThemeProvider/DataGridThemeProvider';
 import { MAT_GRID_SIZE } from './DataGridThemeProvider/AdamThemeWrapper';
 import { IExtendedDatasource, IRowsParams } from './ExtendedProps';
@@ -27,13 +21,14 @@ export interface IDataGrid {
     ref: React.RefObject<QuickTextFilterHandler>
   ) => JSX.Element;
   resetFilter?: boolean;
-  resetFilterRenderer?: (onResetFilter: () => void) => JSX.Element;
+  resetFilterRenderer?: (onResetFilter: () => void, disabled: boolean) => JSX.Element;
   resetSorting?: boolean;
-  resetSortingRenderer?: (onResetSorting: () => void) => JSX.Element;
+  resetSortingRenderer?: (onResetSorting: () => void, disabled: boolean) => JSX.Element;
 }
 
 export type ExtendedAgGridReactProps = Partial<AgGridReactProps> & IDataGrid & Pick<IDataGridThemeProvider, 'theme'>;
 
+let gridApi = null;
 /**
  * Wrapper for Ag-Grid
  */
@@ -54,7 +49,6 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
     quickFilterText = props.quickFilter ? undefined : props.quickFilterText,
     ...rest
   } = props;
-  const gridApi = useRef(new GridApi());
 
   const [rowData, setRowData] = useState(extendedDatasource ? [] : props.rowData);
 
@@ -88,7 +82,7 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
   );
 
   const _onGridReady = (event: GridReadyEvent) => {
-    gridApi.current = event.api;
+    gridApi = event.api;
 
     if (extendedDatasource) {
       const filterModel =
@@ -112,7 +106,7 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
 
   const sizeToFit = () => {
     if (gridApi) {
-      gridApi.current.sizeColumnsToFit();
+      gridApi.sizeColumnsToFit();
     }
   };
 
@@ -131,9 +125,9 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
   const toggleLoadingOverlay = (toggle: boolean) => {
     if (gridApi) {
       if (toggle) {
-        gridApi.current.showLoadingOverlay();
+        gridApi.showLoadingOverlay();
       } else {
-        gridApi.current.hideOverlay();
+        gridApi.hideOverlay();
       }
     }
   };
@@ -141,9 +135,9 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
   const toggleNoRowsOverlay = (toggle: boolean) => {
     if (gridApi) {
       if (toggle) {
-        gridApi.current.showNoRowsOverlay();
+        gridApi.showNoRowsOverlay();
       } else {
-        gridApi.current.hideOverlay();
+        gridApi.hideOverlay();
       }
     }
   };
@@ -167,8 +161,8 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
 
   const onPageChanged = (pageNumber: number, pageSize: number) => {
     if (!extendedDatasource) {
-      gridApi.current.paginationGoToPage(pageNumber - 1);
-      gridApi.current.paginationSetPageSize(pageSize);
+      gridApi.paginationGoToPage(pageNumber - 1);
+      gridApi.paginationSetPageSize(pageSize);
     } else {
       setCustomPagination({
         pageSize: pageSize,
@@ -267,14 +261,14 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
   };
 
   const onResetSorting = () => {
-    if (gridApi.current) {
-      gridApi.current.setSortModel(null);
+    if (gridApi) {
+      gridApi.setSortModel(null);
     }
   };
 
   const quickTextFilterRef = useRef<QuickTextFilterHandler>(null);
   const onResetFilter = () => {
-    if (gridApi.current) {
+    if (gridApi) {
       deepSetRowsParams({
         quickFilterText: undefined,
         filterModel: {},
@@ -282,13 +276,15 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
       if (quickTextFilterRef && quickTextFilterRef.current) {
         quickTextFilterRef.current.reset();
       }
-      gridApi.current.setFilterModel({});
+      gridApi.setFilterModel({});
     }
   };
 
   //#endregion
 
   const isAdamTheme = theme === 'ag-theme-adam';
+  const disableFilterButton = !(gridApi && Object.keys(gridApi.getFilterModel()).length > 0);
+  const disableSortingButton = !(gridApi && (gridApi.getSortModel() || []).length > 0);
   return (
     <DataGridThemeProvider theme={theme}>
       <div className={`adam-ui-gridwrapper${props.floatingFilter ? ' floatingFilter' : ''}`}>
@@ -306,17 +302,27 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
             ))}
           {resetFilter &&
             (resetFilterRenderer ? (
-              resetFilterRenderer(onResetFilter)
+              resetFilterRenderer(onResetFilter, disableFilterButton)
             ) : (
-              <button className="ag-custom-panel-filter-button" name={'btnResetFilter'} onClick={onResetFilter}>
+              <button
+                className="ag-custom-panel-filter-button"
+                name={'btnResetFilter'}
+                onClick={onResetFilter}
+                disabled={disableFilterButton}
+              >
                 Reset Filters
               </button>
             ))}
           {resetSorting &&
             (resetSortingRenderer ? (
-              resetSortingRenderer(onResetSorting)
+              resetSortingRenderer(onResetSorting, disableSortingButton)
             ) : (
-              <button className="ag-custom-panel-sorting-button" name={'btnResetSorting'} onClick={onResetSorting}>
+              <button
+                className="ag-custom-panel-sorting-button"
+                name={'btnResetSorting'}
+                onClick={onResetSorting}
+                disabled={disableSortingButton}
+              >
                 Reset Sorting
               </button>
             ))}
