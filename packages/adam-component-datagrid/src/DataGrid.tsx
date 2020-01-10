@@ -246,6 +246,7 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
         });
         setRowData([]);
         toggleLoadingOverlay(false);
+        toggleNoRowsOverlay(true);
       };
 
       toggleLoadingOverlay(true);
