@@ -24,7 +24,7 @@ export interface IDataGrid {
   resetFilterRenderer?: (onResetFilter: () => void, disabled: boolean) => JSX.Element;
   resetSorting?: boolean;
   resetSortingRenderer?: (onResetSorting: () => void, disabled: boolean) => JSX.Element;
-  paginatorConfig: IPaginationConfigProps & IPaginationConfig;
+  paginatorConfig?: IPaginationConfigProps & IPaginationConfig;
 }
 
 export type ExtendedAgGridReactProps = Partial<AgGridReactProps> & IDataGrid & Pick<IDataGridThemeProvider, 'theme'>;
@@ -48,7 +48,7 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
     resetSortingRenderer,
     quickFilterRenderer,
     quickFilterText = props.quickFilter ? undefined : props.quickFilterText,
-    paginatorConfig,
+    paginatorConfig = { hidePageSummary: undefined, hidePageSize: undefined, pageRange: undefined },
     ...rest
   } = props;
 
@@ -245,7 +245,6 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
           pageSize: customPagination.pageSize,
         });
         setRowData([]);
-
         toggleLoadingOverlay(false);
       };
 
