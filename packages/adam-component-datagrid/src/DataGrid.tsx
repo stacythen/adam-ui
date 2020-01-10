@@ -8,7 +8,7 @@ import { IExtendedDatasource, IRowsParams } from './ExtendedProps';
 import { DEFAULT_COL_DEF, DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE } from './constants';
 import { isDeepEqual } from './utils';
 import QuickTextFilter, { QuickTextFilterHandler } from './QuickTextFilter';
-import Pagination, { IPaginationProps } from 'adam-component-pagination';
+import Pagination, { IPaginationProps, IPaginationConfigProps, IPaginationConfig } from 'adam-component-pagination';
 import merge from 'lodash/merge';
 
 export interface IDataGrid {
@@ -24,6 +24,7 @@ export interface IDataGrid {
   resetFilterRenderer?: (onResetFilter: () => void, disabled: boolean) => JSX.Element;
   resetSorting?: boolean;
   resetSortingRenderer?: (onResetSorting: () => void, disabled: boolean) => JSX.Element;
+  paginatorConfig: IPaginationConfigProps & IPaginationConfig;
 }
 
 export type ExtendedAgGridReactProps = Partial<AgGridReactProps> & IDataGrid & Pick<IDataGridThemeProvider, 'theme'>;
@@ -47,6 +48,7 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
     resetSortingRenderer,
     quickFilterRenderer,
     quickFilterText = props.quickFilter ? undefined : props.quickFilterText,
+    paginatorConfig,
     ...rest
   } = props;
 
@@ -237,7 +239,13 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
       };
 
       const failCallback = () => {
+        setCustomPagination({
+          currentPage: DEFAULT_PAGE_NUMBER,
+          rowCount: 0,
+          pageSize: customPagination.pageSize,
+        });
         setRowData([]);
+
         toggleLoadingOverlay(false);
       };
 
@@ -349,7 +357,7 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
           suppressMovableColumns={true}
           {...rest}
         />
-        {pagination && <Pagination {...customPagination} onPageChanged={onPageChanged} />}
+        {pagination && <Pagination {...customPagination} {...paginatorConfig} onPageChanged={onPageChanged} />}
       </div>
     </DataGridThemeProvider>
   );
