@@ -58,3 +58,9 @@
 .paginator:disabled {
   cursor: not-allowed;
 }
+
+.paginator > .refresh {
+  transform: rotate(90deg);
+  padding: 6px 6px 0 0;
+  margin-left: 6px;
+}
