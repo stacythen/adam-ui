@@ -74,9 +74,9 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
   //#region AgGrid Event Handlers
 
   const deepSetRowsParams = useCallback(
-    (params: Partial<IRowsParams>) => {
+    (params: Partial<IRowsParams>, force = false) => {
       const mergeRowsParams: IRowsParams = Object.assign({}, rowsParams, params);
-      if (!isDeepEqual(rowsParams, mergeRowsParams)) {
+      if (force || !isDeepEqual(rowsParams, mergeRowsParams)) {
         setRowsParams(mergeRowsParams);
       }
     },
@@ -161,7 +161,7 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
     }
   };
 
-  const onPageChanged = (pageNumber: number, pageSize: number) => {
+  const onPageChanged = (pageNumber: number, pageSize: number, force = false) => {
     if (!extendedDatasource) {
       gridApi.paginationGoToPage(pageNumber - 1);
       gridApi.paginationSetPageSize(pageSize);
@@ -171,11 +171,18 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
         currentPage: pageNumber,
         rowCount: customPagination.rowCount,
       });
-      deepSetRowsParams({
-        pageNumber: pageNumber,
-        pageSize: pageSize,
-      });
+      deepSetRowsParams(
+        {
+          pageNumber: pageNumber,
+          pageSize: pageSize,
+        },
+        force
+      );
     }
+  };
+
+  const onRefresh = (pageNumber: number, pageSize: number) => {
+    this.onPageChanged(pageNumber, pageSize, true);
   };
 
   //#endregion
@@ -242,7 +249,7 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
         setCustomPagination({
           currentPage: DEFAULT_PAGE_NUMBER,
           rowCount: 0,
-          pageSize: customPagination.pageSize,
+          pageSize: pageSize,
         });
         setRowData([]);
         toggleLoadingOverlay(false);
@@ -357,7 +364,9 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
           suppressMovableColumns={true}
           {...rest}
         />
-        {pagination && <Pagination {...customPagination} {...paginatorConfig} onPageChanged={onPageChanged} />}
+        {pagination && (
+          <Pagination {...customPagination} {...paginatorConfig} onPageChanged={onPageChanged} onRefresh={onRefresh} />
+        )}
       </div>
     </DataGridThemeProvider>
   );

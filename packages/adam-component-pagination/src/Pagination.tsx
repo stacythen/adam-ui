@@ -28,6 +28,7 @@ interface IPaginationDispatchProps {
   onNextClicked?: () => void;
   onLastClicked?: () => void;
   onPageChanged?: (pageNumber: number, pageSize: number) => void;
+  onRefresh?: (pageNumber: number, pageSize: number) => void;
 }
 
 const PAGE_RANGE = 10;
@@ -44,12 +45,20 @@ const Pagination = (props: PaginationProps): React.ReactElement => {
     onNextClicked,
     onLastClicked,
     onPageChanged,
+    onRefresh,
     hidePageSummary = false,
     hidePageSize = false,
     hideRefresh = false,
   } = props;
 
   const paginationInfo = Paginator(pageSize, pageRange, rowCount, currentPage);
+
+  const handleRefresh = (currentPage: number) => () => {
+    if (onRefresh) {
+      const { pageSize } = props;
+      onRefresh(currentPage, pageSize);
+    }
+  };
 
   const pageChanged = (currentPage: number, pageSize: number): void => {
     if (onPageChanged) {
@@ -150,7 +159,7 @@ const Pagination = (props: PaginationProps): React.ReactElement => {
           </div>
         )}
         {!hideRefresh && (
-          <div className="refresh" onClick={onPaginatorClicked(paginationInfo.current_page)}>
+          <div className="refresh" onClick={handleRefresh(paginationInfo.current_page)}>
             &#8634;
           </div>
         )}
