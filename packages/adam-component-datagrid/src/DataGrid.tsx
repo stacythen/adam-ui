@@ -182,7 +182,7 @@ const DataGrid = (props: ExtendedAgGridReactProps): React.ReactElement => {
   };
 
   const onRefresh = (pageNumber: number, pageSize: number) => {
-    this.onPageChanged(pageNumber, pageSize, true);
+    onPageChanged(pageNumber, pageSize, true);
   };
 
   //#endregion
