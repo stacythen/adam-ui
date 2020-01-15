@@ -1,10 +1,10 @@
 {
   "name": "adam-ui-stories",
   "private": true,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Stacy Then",
   "dependencies": {
-    "adam-component-datagrid": "^1.0.3",
+    "adam-component-datagrid": "^1.0.4",
     "adam-component-pagination": "^1.0.1"
   },
   "scripts": {
