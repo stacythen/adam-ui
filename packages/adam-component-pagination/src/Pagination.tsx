@@ -15,6 +15,7 @@ export interface IPaginationProps {
 export interface IPaginationConfigProps {
   hidePageSummary?: boolean;
   hidePageSize?: boolean;
+  hideRefresh?: boolean;
 }
 
 export interface IPaginationConfig {
@@ -45,6 +46,7 @@ const Pagination = (props: PaginationProps): React.ReactElement => {
     onPageChanged,
     hidePageSummary = false,
     hidePageSize = false,
+    hideRefresh = false,
   } = props;
 
   const paginationInfo = Paginator(pageSize, pageRange, rowCount, currentPage);
@@ -136,10 +138,23 @@ const Pagination = (props: PaginationProps): React.ReactElement => {
   };
 
   return (
-    <div className={`pagination-panel`} style={{ padding: '0 18px' }}>
-      {buildPages(paginationInfo)}
-      {!hidePageSize && <PaginationSizeSelector pageSize={pageSize} onPageSizeChanged={handlePageSizeChanged} />}
-      {!hidePageSummary && <PaginationSummary {...paginationInfo} />}
+    <div className="pagination-panel">
+      <div className="pagination-panel-left">
+        {buildPages(paginationInfo)}
+        {!hidePageSize && <PaginationSizeSelector pageSize={pageSize} onPageSizeChanged={handlePageSizeChanged} />}
+      </div>
+      <div className="pagination-panel-right">
+        {!hidePageSummary && (
+          <div>
+            <PaginationSummary {...paginationInfo} />
+          </div>
+        )}
+        {!hideRefresh && (
+          <div className="refresh" onClick={onPaginatorClicked(paginationInfo.current_page)}>
+            &#8634;
+          </div>
+        )}
+      </div>
     </div>
   );
 };

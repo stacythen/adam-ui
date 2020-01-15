@@ -12,4 +12,19 @@ describe('Pagination', () => {
     const link = shallow(<Pagination pageSize={10} currentPage={10} rowCount={1000} />);
     expect(link).toMatchSnapshot();
   });
+
+  it('should render without page size', () => {
+    const link = shallow(<Pagination pageSize={10} currentPage={10} rowCount={1000} hidePageSize={true} />);
+    expect(link).toMatchSnapshot();
+  });
+
+  it('should render without page summary', () => {
+    const link = shallow(<Pagination pageSize={10} currentPage={10} rowCount={1000} hidePageSummary={true} />);
+    expect(link).toMatchSnapshot();
+  });
+
+  it('should render without refresh button', () => {
+    const link = shallow(<Pagination pageSize={10} currentPage={10} rowCount={1000} hideRefresh={true} />);
+    expect(link).toMatchSnapshot();
+  });
 });
