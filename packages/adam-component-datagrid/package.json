@@ -17,7 +17,9 @@
     "build": "tsc && npm run build:css && npm run copy-static-files",
     "build:css": "node-sass src/ -o 'src' ",
     "watch:css": "npm run build:css && node-sass src/ -o src/ -w -r",
-    "copy-static-files": "copyfiles -u 1 src/**/*.css src/**/*.scss lib/"
+    "copy-static-files": "copyfiles -u 1 src/**/*.css src/**/*.scss lib/",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "peerDependencies": {
     "css-loader": "^0.28.7",
@@ -31,11 +33,13 @@
     "adam-component-pagination": "^1.0.1",
     "ag-grid-community": "^21.1.0",
     "ag-grid-react": "^21.1.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@types/node-sass": "^4.11.0",
     "copyfiles": "^2.1.1",
     "node-sass": "^4.12.0"
-  }
+  },
+  "snyk": true
 }
