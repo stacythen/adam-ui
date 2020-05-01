@@ -5,10 +5,14 @@
   "author": "Stacy Then",
   "dependencies": {
     "adam-component-datagrid": "^1.0.4",
-    "adam-component-pagination": "^1.0.1"
+    "adam-component-pagination": "^1.0.1",
+    "snyk": "^1.316.1"
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
-  }
+    "build-storybook": "build-storybook",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
